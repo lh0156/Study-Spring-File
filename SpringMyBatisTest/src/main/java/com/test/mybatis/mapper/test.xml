@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test">
+	
+	<!-- 
+	<select id=""></select>
+	<insert id=""></insert>
+	<update id=""></update>
+	<delete id=""></delete>
+	-->
+	
+	<insert id="m1">
+		insert into tblMemo (seq, name, memo, regdate) 
+			values (seqMemo.nextVal, '홍길동', 'MyBatis 테스트입니다.', default)
+	</insert>
+	
+	<insert id="m2" parameterType="dto">
+		insert into tblMemo (seq, name, memo, regdate) 
+			values (seqMemo.nextVal, #{name}, #{memo}, default)
+	</insert>
+	
+	<delete id="m3" parameterType="String">
+		delete from tblMemo where seq = #{seq}		
+	</delete>
+	
+	<insert id="m4" parameterType="map">
+		insert into tblMemo (seq, name, memo, regdate) 
+			values (seqMemo.nextVal, #{id}, #{content}, default)
+	</insert>
+	
+	<select id="m5" resultType="String">
+		select count(*) from tblMemo
+	</select>
+	
+	<select id="m6" parameterType="String" resultType="dto">
+		select * from tblMemo where seq = #{seq}
+	</select>
+	
+	<!-- *** N개의 레코드를 반환할때 resultType은 레코드 1개의 타입을 명시한다. -->
+	<select id="m7" resultType="String">
+		select memo from tblMemo
+	</select>
+	
+	<select id="m8" resultType="dto">
+		select seq, name, memo, regdate from tblMemo
+	</select>
+	
+	<select id="m9" parameterType="map" resultType="dto">
+		select * from tblMemo
+			
+			<!-- MyBatis 동적 쿼리 -->
+			<if test="column == 'name'">
+			where name = #{word}
+			</if>
+			
+			<if test="column == 'memo'">
+			where memo like '%' || #{word} || '%'
+			</if>
+			
+			order by seq 
+			<if test="order == 'asc'">
+				asc
+			</if>	
+			<if test="order == 'desc'">
+				desc
+			</if>		
+			
+	</select>
+	
+	<select id="m10" parameterType="map" resultType="dto">
+		
+		<!--  
+			#{} 바인딩 > 데이터 취급 > '데이터'
+			${} 바인딩 > 키워드 취급 > 데이터
+		-->
+		select * from tblMemo
+			where ${column} like '%' || #{word} || '%'
+				order by seq ${order}
+				
+		<!-- 
+		select * from tblMemo
+			where 'name' like '%' || '길동' || '%'
+				order by seq 'desc'
+		
+		select * from tblMemo
+			where name like '%' || '길동' || '%'
+				order by seq desc
+		 -->
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

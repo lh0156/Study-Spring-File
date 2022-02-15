@@ -1,0 +1,40 @@
+새 프로젝트
+- "SpringWebTest" > Spring MVC Project > "com.test.spring"
+
+
+pom.xml
+- lombok(롬복)
+
+- "Ex01.java"
+- "DTO.java"
+
+
+
+Spring MVC
+- Spring 기반의 MVC를 지원하는 웹 프로젝트
+
+
+데이터 입력 + 전송 + 수신
+
+- "Ex03Controller.java"
+
+- "ex03.jsp" //보내기
+- "ex03ok.jsp" //받기
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
