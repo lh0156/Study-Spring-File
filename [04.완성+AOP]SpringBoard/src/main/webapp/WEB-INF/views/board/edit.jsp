@@ -33,8 +33,8 @@
 				</c:if>
 				<c:if test="${not empty dto.orgfilename}">
 					<div id="file">첨부파일: ${dto.orgfilename}</div>
-					<div id="on">[삭제하기]</div>
-					<div id="off">[되돌리기]</div>
+					<div id="on" style="cursor:pointer">[삭제하기]</div>
+					<div id="off" style="cursor:pointer">[되돌리기]</div>
 				</c:if>
 			</div>
 		</td>
